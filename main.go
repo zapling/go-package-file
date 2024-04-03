@@ -8,8 +8,9 @@ import (
 )
 
 const (
-	installDir  = ".gopack"
-	packageFile = "go.pack"
+	installDir      = ".gopack"
+	packageFilename = "go.pack"
+	lockFilename    = "go.pack.lock"
 )
 
 func printHelpText() {
@@ -49,7 +50,7 @@ func run(ctx context.Context, args []string) error {
 
 	switch command {
 	case "install":
-		return executeInstallCommand(ctx)
+		return executeInstallCommand(ctx, goPath)
 	case "exec":
 		if len(args) == 0 {
 			return fmt.Errorf("missing binary arg")
